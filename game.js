@@ -37,10 +37,11 @@ class Game {
     }
     pickWinner() {
         //logic needed for tie
-        let outCome =  this.playerOne.gestures[0].compare(this.playerTwo.ChosenGesture)
+        let outCome =  this.playerOne.gestures[0].compare(this.playerTwo.ChosenGesture[0])
         if (this.playerOne.gesture < this.playerTwo.gesture) {
             this.playerTwo.score++;
         }
+        else if(this.playerOne.gestures[0].equal(this.playerTwo.c))
         else {
             this.playerOne.score++;
         }
@@ -57,7 +58,7 @@ class Player {
     constructor(name) {
         this.name = name;
         this.score = 0;
-        this.gestures = [new Rock(), ne Gesture(), new Gesture()];
+        this.gestures = [new Rock(), new Paper(), new Sciccors(), new Lizard(), new Spock()];
     }
     getGesture() {
         let gesture = prompt(`${this.name}, Pick only one. rock, paper, scissors, lizard, spock`);
