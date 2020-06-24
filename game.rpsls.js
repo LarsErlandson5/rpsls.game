@@ -1,3 +1,24 @@
 "use strict";
-//adding a line of code
-console.log("Yo")
+
+class Game{
+    constructor(){
+
+    }
+
+}
+
+class Player{
+    constructor(name){
+        this.score = 0;
+        this.name = name;
+    }
+
+}
+
+
+class Gestures{
+    constructor(){
+
+    }
+
+}
