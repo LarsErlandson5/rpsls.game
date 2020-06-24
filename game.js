@@ -69,6 +69,29 @@ class Player {
     }
 }
 
+class Gesture{
+    constructor(handSign){
+        this.handSign = handSign;
+    }
+}
+
+class Rock extends Gesture{
+    constructor(handSign){
+        super(handSign)
+    }
+    compare(gesture){
+        if(gesture.handSign === "scissors" || gesture.handSign === "lizard"){
+            return 1;
+        }
+        else if (gesture.handSign === "rock"){
+            return 0;
+        }
+        else{
+            return -1;
+        }
+    }
+}
+
 class Score {
     constructor() {
         this.score = 0;
