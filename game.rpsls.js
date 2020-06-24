@@ -1,13 +1,15 @@
 "use strict";
 
 const rock;         // crushes Scissors  
-const paper         // covers Rock 
-const scissors      // cuts Paper 
-const lizard        // poisons Spock 
-const spock         //smashes Scissors 
+const paper;         // covers Rock 
+const scissors;      // cuts Paper 
+const lizard;        // poisons Spock 
+const spock;         //smashes Scissors 
 
 class Game{
     constructor(){
+        this.playerOne = new Player("Lars");
+        this.playTwo = new Player("Damon");
 
     }
 
@@ -15,8 +17,8 @@ class Game{
 
 class Player{
     constructor(name){
-        this.score = 0;
         this.name = name;
+        this.score = 0;
     }
 
 }
