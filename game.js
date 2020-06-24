@@ -29,9 +29,14 @@ class Game {
             this.playerTwo.gesture = this.playerTwo.getGesture();
             this.pickWinner();
             console.log(this.playerOne.score, this.playerTwo.score);
-            //call the decide who wins method
-
-        }
+            //if(this.playerOne)
+            }
+            if (this.playerOne.score > this.playerTwo.score){
+                console.log(`${this.playerOne.name}, is the WINNER!!!`)
+            }
+            else{
+                console.log(`${this.playerTwo.name}, is the Winner!!!`)
+            }
     }
     pickWinner() {
         //logic needed for tie
