@@ -14,14 +14,23 @@ class Game {
     rungame() {
         this.playerOne.gesture = this.playerOne.getGesture();
         this.playerTwo.gesture = this.playerTwo.getGesture();
+        this.pickWinner();
+        console.log(this.playerOne.score,this.playerTwo.score);
         //call the decide who wins method
 
 
     }
-
-    //make a method to decide who wins
+    pickWinner(){
+        if(this.playerOne.gesture < this.playerTwo.gesture){
+            this.playerTwo.score++;
+        }
+        else{
+            this.playerOne.score++;
+        }
+    }
+    
     //add to a players score
-    //decide who wins 
+    //decide who wins for total score
     //later this would be our rng computer for one player
 
 
