@@ -15,8 +15,9 @@ const gesture = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
 class Game {
     constructor() {
-        this.playerOne = new Player("Lars");
-        this.playerTwo = new Player("Damon");
+        this.numberOfPlayers = prompt("Enter number of players");
+        this.playerOne = new Player(prompt("Enter a name for player one."));
+        this.playerTwo = new Player(prompt("Enter a name for plater 2."));
         this.numberOfGames = prompt("How many games do you want to play?")
         //number of games (best of style)
         //array of players
