@@ -1,10 +1,17 @@
 "use strict";
 
-const rock = 1;         // crushes Scissors  
-const paper = 2;         // covers Rock 
-const scissors = 3;      // cuts Paper 
-const lizard = null;        // poisons Spock 
-const spock = null;         //smashes Scissors 
+const gesture = ['rock', 'paper', 'scissors', 'lizard', 'spock'];    
+
+// Rock crushes Scissors  
+// Scissors cuts Paper 
+// Paper covers Rock 
+// Rock crushes Lizard 
+// Lizard poisons Spock 
+// Spock smashes Scissors 
+// Scissors decapitates Lizard 
+// Lizard eats Paper 
+// Paper disproves Spock 
+// Spock vaporizes Rock  
 
 class Game {
     constructor() {
