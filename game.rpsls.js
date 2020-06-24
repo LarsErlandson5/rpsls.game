@@ -1,32 +1,52 @@
 "use strict";
 
-const rock;         // crushes Scissors  
-const paper;         // covers Rock 
-const scissors;      // cuts Paper 
-const lizard;        // poisons Spock 
-const spock;         //smashes Scissors 
+const rock=1;         // crushes Scissors  
+const paper=2;         // covers Rock 
+const scissors=3;      // cuts Paper 
+const lizard=null;        // poisons Spock 
+const spock=null;         //smashes Scissors 
 
-class Game{
-    constructor(){
+class Game {
+    constructor() {
         this.playerOne = new Player("Lars");
-        this.playTwo = new Player("Damon");
+        this.playerTwo = new Player("Damon");
+    }
+    rungame() {
+        this.playerOne.gesture = this.playerOne.getGesture();
+        this.playerTwo.gesture = this.playerTwo.getGesture();
+        //call the decide who wins method
+
 
     }
 
+    //make a method to decide who wins
+    //add to a players score
+    //decide who wins 
+    //later this would be our rng computer for one player
+
+
 }
 
-class Player{
-    constructor(name){
+class Player {
+    constructor(name) {
         this.name = name;
         this.score = 0;
+        this.gesture = null;
     }
+    getGesture() {
+        console.log("whoak")
+        let gesture = prompt(`${this.name}, Pick only one. rock, paper, scissors, lizard, spock`);
+        return gesture.toLowerCase();
+        
 
+    }
 }
 
-
-class Gestures{
-    constructor(){
-
+class Score {
+    constructor() {
+        this.score = 0;
     }
-
 }
+
+let game = new Game();
+game.rungame();
