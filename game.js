@@ -12,7 +12,7 @@
 
 class Game {
     constructor() {
-        this.numberOfPlayers = prompt("Enter number of players");
+        this.numberOfPlayers = prompt("Enter nuber of players");
         this.playerOne = new Player(prompt("Enter a name for player one."));
         this.playerTwo = new Player(prompt("Enter a name for plater 2."));
         this.numberOfGames = prompt("How many games do you want to play?")
@@ -21,37 +21,51 @@ class Game {
         //score
     }
     rungame() {
-        for (let i = 0; this.numberOfGames > i; i++) {
-            this.playerOne.gesture = this.playerOne.getGesture();
-            this.playerTwo.gesture = this.playerTwo.getGesture();
-            this.pickWinner();
-            console.log(this.playerOne.score, this.playerTwo.score);
-            //if(this.playerOne)
-        }
-        if (this.playerOne.score > this.playerTwo.score) {
-            console.log(`${this.playerOne.name}, is the WINNER!!!`)
+        if (this.numberOfPlayers > 1) {
+            for (let i = 0; this.numberOfGames > i; i++) {
+                this.playerOne.gesture = this.playerOne.getGesture();
+                this.playerTwo.gesture = this.playerTwo.getGesture();
+                this.pickWinner();
+                console.log(this.playerOne.score, this.playerTwo.score);
+                //if(this.playerOne)
+            }
+            if (this.playerOne.score > this.playerTwo.score) {
+                console.log(`${this.playerOne.name}, is the WINNER!!!`)
+            }
+            else {
+                console.log(`${this.playerTwo.name}, is the Winner!!!`)
+            }
         }
         else {
-            console.log(`${this.playerTwo.name}, is the Winner!!!`)
+            for (let i = 0; this.numberOfGames > i; i++) {
+                this.playerOne.gesture = this.playerOne.getGesture();
+                this.playerAI.gesture = this.playerAI.getGesture();
+                this.pickWinner();
+                console.log(this.playerOne.score, this.playerAI.score);
+                //if(this.playerOne)
+            }
+            if (this.playerOne.score > this.playerAI.score) {
+                console.log(`${this.playerOne.name}, is the WINNER!!!`)
+            }
+            else {
+                console.log(`${this.playerAI.name}, is the Winner!!!`)
+            }
         }
     }
     pickWinner() {
         //logic needed for tie
-        let outCome =  this.playerOne.gestures[0].compare(this.playerTwo.ChosenGesture[0])
+        let outCome = this.playerOne.gestures[0].compare(this.playerTwo.gesture[0]);
+        console.log(outCome);
         if (this.playerOne.gesture < this.playerTwo.gesture) {
             this.playerTwo.score++;
         }
-        else if(this.playerOne.gestures[0].equal(this.playerTwo.c))
+        else if (this.playerOne.gestures[0] == (this.playerTwo.gesture[0])) {
+            return
+        }
         else {
             this.playerOne.score++;
         }
     }
-
-    //add to a players score
-    //decide who wins for total score
-    //later this would be our rng computer for one player
-
-
 }
 
 class Player {
@@ -68,109 +82,99 @@ class Player {
     }
 }
 
-class Gesture{
-    constructor(handSign){
+// class Ai extends Player {
+//     constructor() {
+//         super(
+//     }
+
+// }
+
+class Gesture {
+    constructor(handSign) {
         this.handSign = handSign;
     }
 }
 
-class Rock extends Gesture{
-    constructor(){
+class Rock extends Gesture {
+    constructor() {
         super("Rock")
     }
-    compare(gesture){
-        if(gesture.handSign === "scissors" || gesture.handSign === "lizard"){
+    compare(gesture) {
+        if (gesture.handSign === "scissors" || gesture.handSign === "lizard") {
             return 1;
         }
-        else if (gesture.handSign === "rock"){
+        else if (gesture.handSign === "rock") {
             return 0;
         }
-        else{
+        else {
             return -1;
         }
     }
 }
 
-class Rock extends Gesture{
-    constructor(){
-        super("Rock")
-    }
-    compare(gesture){
-        if(gesture.handSign === "scissors" || gesture.handSign === "lizard"){
-            return 1;
-        }
-        else if (gesture.handSign === "rock"){
-            return 0;
-        }
-        else{
-            return -1;
-        }
-    }
-}
-
-class Paper extends Gesture{
-    constructor(){
+class Paper extends Gesture {
+    constructor() {
         super("paper")
     }
-    compare(gesture){
-        if(gesture.handSign === "rock" || gesture.handSign === "spock"){
+    compare(gesture) {
+        if (gesture.handSign === "rock" || gesture.handSign === "spock") {
             return 1;
         }
-        else if (gesture.handSign === "paper"){
+        else if (gesture.handSign === "paper") {
             return 0;
         }
-        else{
+        else {
             return -1;
         }
     }
 }
 
-class Sciccors extends Gesture{
-    constructor(){
+class Sciccors extends Gesture {
+    constructor() {
         super("sciccors")
     }
-    compare(gesture){
-        if(gesture.handSign === "paper" || gesture.handSign === "lizard"){
+    compare(gesture) {
+        if (gesture.handSign === "paper" || gesture.handSign === "lizard") {
             return 1;
         }
-        else if (gesture.handSign === "sciccors"){
+        else if (gesture.handSign === "sciccors") {
             return 0;
         }
-        else{
+        else {
             return -1;
         }
     }
 }
 
-class Lizard extends Gesture{
-    constructor(){
+class Lizard extends Gesture {
+    constructor() {
         super("lizard")
     }
-    compare(gesture){
-        if(gesture.handSign === "spock" || gesture.handSign === "paper"){
+    compare(gesture) {
+        if (gesture.handSign === "spock" || gesture.handSign === "paper") {
             return 1;
         }
-        else if (gesture.handSign === "lizard"){
+        else if (gesture.handSign === "lizard") {
             return 0;
         }
-        else{
+        else {
             return -1;
         }
     }
 }
 
-class Spock extends Gesture{
-    constructor(){
+class Spock extends Gesture {
+    constructor() {
         super("spock")
     }
-    compare(gesture){
-        if(gesture.handSign === "rock" || gesture.handSign === "scissors"){
+    compare(gesture) {
+        if (gesture.handSign === "rock" || gesture.handSign === "scissors") {
             return 1;
         }
-        else if (gesture.handSign === "spock"){
+        else if (gesture.handSign === "spock") {
             return 0;
         }
-        else{
+        else {
             return -1;
         }
     }
