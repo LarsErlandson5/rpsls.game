@@ -1,45 +1,33 @@
 "use strict";
-// Rock crushes Scissors  
-// Scissors cuts Paper 
-// Paper covers Rock 
-// Rock crushes Lizard 
-// Lizard poisons Spock 
-// Spock smashes Scissors 
-// Scissors decapitates Lizard 
-// Lizard eats Paper 
-// Paper disproves Spock 
-// Spock vaporizes Rock  
 
 class Game {
     constructor() {
         this.numberOfPlayers = prompt("Enter nuber of players");
-        this.playerOne = new Player(prompt("Enter a name for player one."));
-        this.playerTwo = new Player(prompt("Enter a name for plater 2."));
         this.numberOfGames = prompt("How many games do you want to play?")
-        //number of games (best of style)
-        //array of players
-        //score
     }
     rungame() {
         if (this.numberOfPlayers > 1) {
+        this.playerOne = new Player(prompt("Enter a name for player 1."));
+        this.playerTwo = new Player(prompt("Enter a name for player 2."));
             for (let i = 0; this.numberOfGames > i; i++) {
-                this.playerOne.gesture = this.playerOne.getGesture();
-                this.playerTwo.gesture = this.playerTwo.getGesture();
+                this.playerOne.chosenGesture = this.playerOne.getGesture();
+                this.playerTwo.chosenGesture = this.playerTwo.getGesture();
                 this.pickWinner();
                 console.log(this.playerOne.score, this.playerTwo.score);
                 //if(this.playerOne)
             }
             if (this.playerOne.score > this.playerTwo.score) {
-                console.log(`${this.playerOne.name}, is the WINNER!!!`)
+                console.log(`${this.playerOne.name}, is the Winner!!!`)
             }
             else {
                 console.log(`${this.playerTwo.name}, is the Winner!!!`)
             }
         }
         else {
+            this.playerOne = new Player(prompt("Enter a name for player 1."));
             for (let i = 0; this.numberOfGames > i; i++) {
-                this.playerOne.gesture = this.playerOne.getGesture();
-                this.playerAI.gesture = this.playerAI.getGesture();
+                this.playerOne.chosenGesture = this.playerOne.getGesture();
+                this.playerAI.chosenGesture = this.playerAI.getGesture();
                 this.pickWinner();
                 console.log(this.playerOne.score, this.playerAI.score);
                 //if(this.playerOne)
@@ -53,13 +41,12 @@ class Game {
         }
     }
     pickWinner() {
-        //logic needed for tie
         let outCome = this.playerOne.gestures[0].compare(this.playerTwo.gesture[0]);
         console.log(outCome);
-        if (this.playerOne.gesture < this.playerTwo.gesture) {
+        if (this.playerOne.chosenGesture < this.playerTwo.chosenGesture) {
             this.playerTwo.score++;
         }
-        else if (this.playerOne.gestures[0] == (this.playerTwo.gesture[0])) {
+        else if (this.playerOne.chosenGestures[0] == (this.playerTwo.chosenGesture[0])) {
             return
         }
         else {
@@ -72,22 +59,41 @@ class Player {
     constructor(name) {
         this.name = name;
         this.score = 0;
+        this.chosenGesture = null;
         this.gestures = [new Rock(), new Paper(), new Sciccors(), new Lizard(), new Spock()];
     }
     getGesture() {
         let gesture = prompt(`${this.name}, Pick only one. rock, paper, scissors, lizard, spock`);
-        return gesture.toLowerCase();
-
-
+        switch(gesture){
+            case "rock":
+                this.chosenGesture = this.gestures[0];
+                break;
+            case "paper":
+                this.chosenGesture = this.gestures[1];
+                break;
+            case "sciccors":
+                this.chosenGesture = this.gestures[2];
+                break;
+            case "lizard":
+                this.chosenGesture = this.gestures[3];
+                break;
+            case "spock":  
+                this.chosenGesture = this.gestures[4];
+            break;      }
     }
 }
 
-// class Ai extends Player {
-//     constructor() {
-//         super(
-//     }
+class Ai extends Player {
+    constructor() {
+        super()
+    }
+    randomNumberGenerator(){
+        let rng = Math.floor(Math.random() * this.gestures.length);
+     this.chosenGesture =this.gestures[rng];
+ 
+    }
 
-// }
+}
 
 class Gesture {
     constructor(handSign) {
