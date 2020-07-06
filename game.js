@@ -2,9 +2,10 @@
 
 class Game {
     constructor() {
-        this.numberOfPlayers = prompt("Enter number of players");
+        this.numberOfPlayers = prompt("Enter number of players", "1 or 2");
         this.playerOne = new Player(prompt("Enter a name for player one."));
         this.playerTwo = null;
+        this.Automated = new Player();
         this.numberOfGames = 1;
         this.gesture = null;
     }
@@ -20,25 +21,31 @@ class Game {
             console.log(this.playerOne.score, this.playerTwo.score);
 
         }
-        else{
+        else {
             for (let i = 0; this.numberOfGames > i; i++) {
                 this.playerOne.gesture = this.playerOne.getGesture();
-                this.playerAutomated = new Player;
-                this.playerAutomated.getGesture();
-
+                this.playerAutomated = new Player.Automated();
+                this.playerAutomated = this.playerAutomated.rng();
             }
             this.pickWinner();
-            console.log(this.playerOne.score, this.playerTwo.score);
+            console.log(this.playerOne.score, this.playerAutomated.score);
 
         }
-        
+
 
         if (this.playerOne.score > this.playerTwo.score) {
             console.log(`${this.playerOne.name}, won this round`)
         }
-        else {
+        else if (this.playerTwo.score > this.playerOne.score) {
             console.log(`${this.playerTwo.name}, won this round`)
         }
+        else if (this.playerOne > this.playerAutomated.score) {
+            console.log(`${this.playerOne.name}, won this round`)
+        }
+        else {
+            console.log("Squidward is the winner...:(")
+        }
+
     }
     pickWinner() {
 
@@ -86,12 +93,26 @@ class Player {
 
 }
 class Automated extends Player {
-    constructor(name) {
-        super("Squidward");
+    constructor() {
+        this.gesture = [];
     }
-    choosenGesture() {
-        this.gesture = this.gesture[Math.floor(Math.random() * this.gesture.length)];
+    rng() {
+        randomNumber = [Math.floor(Math.random() * this.gesture.length)];
+        switch (randomNumber) {
+            case 1:
+                return this.Automated.gesture = "rock";
+            case 2:
+                return this.Automated.gesture = "paper";
+            case 3:
+                return this.Automated.gesture = "scissors";
+            case 4:
+                return this.Automated.gesture = "lizard";
+            case 5:
+                return this.Automated.gesture = "spock";
+        }
     }
+
+
 }
 class Score {
     constructor() {
