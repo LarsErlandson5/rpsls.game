@@ -1,43 +1,44 @@
 "use strict";
-//const gesture = ['rock', 'paper', 'scissors', 'lizard', 'spock'];    
-// Rock crushes Scissors  
-// Scissors cuts Paper 
-// Paper covers Rock 
-// Rock crushes Lizard 
-// Lizard poisons Spock 
-// Spock smashes Scissors 
-// Scissors decapitates Lizard 
-// Lizard eats Paper 
-// Paper disproves Spock 
-// Spock vaporizes Rock  
+
 class Game {
     constructor() {
         this.numberOfPlayers = prompt("Enter number of players");
         this.playerOne = new Player(prompt("Enter a name for player one."));
-        this.playerTwo = new Player(prompt("Enter a name for player 2."));
+        this.playerTwo = null;
         this.numberOfGames = 1;
         this.gesture = null;
-        //number of games (best of style)
-        //array of players
-        //score
     }
+
     rungame() {
-        for (let i = 0; this.numberOfGames > i; i++) {
-            this.playerOne.gesture = this.playerOne.getGesture();
-            this.playerTwo.gesture = this.playerTwo.getGesture();
+        if (this.numberOfPlayers == 2) {
+            for (let i = 0; this.numberOfGames > i; i++) {
+                this.playerTwo = new Player(prompt("Enter a name for player 2."));
+                this.playerOne.gesture = this.playerOne.getGesture();
+                this.playerTwo.gesture = this.playerTwo.getGesture();
+            }
             this.pickWinner();
             console.log(this.playerOne.score, this.playerTwo.score);
-            //call the decide who wins method
 
         }
-            //if(this.playerOne)
-            
-            if (this.playerOne.score > this.playerTwo.score){
-                console.log(`${this.playerOne.name}, won this round`)
+        else{
+            for (let i = 0; this.numberOfGames > i; i++) {
+                this.playerOne.gesture = this.playerOne.getGesture();
+                this.playerAutomated = new Player;
+                this.playerAutomated.getGesture();
+
             }
-            else{
-                console.log(`${this.playerTwo.name}, won this round`)
-            }
+            this.pickWinner();
+            console.log(this.playerOne.score, this.playerTwo.score);
+
+        }
+        
+
+        if (this.playerOne.score > this.playerTwo.score) {
+            console.log(`${this.playerOne.name}, won this round`)
+        }
+        else {
+            console.log(`${this.playerTwo.name}, won this round`)
+        }
     }
     pickWinner() {
 
@@ -83,6 +84,14 @@ class Player {
         return gesture.toLowerCase();
     }
 
+}
+class Automated extends Player {
+    constructor(name) {
+        super("Squidward");
+    }
+    choosenGesture() {
+        this.gesture = this.gesture[Math.floor(Math.random() * this.gesture.length)];
+    }
 }
 class Score {
     constructor() {
